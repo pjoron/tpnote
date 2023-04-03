@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue{% endblock %}
+
+
+
+
+{% block body %}
+
+<style>
+
+    .content {
+        width: 300px;
+        height: 100px;
+        border: 1px solid black;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .content h2 {
+        margin: 0;
+    }
+
+    .content p {
+        margin: 0;
+    }
+
+
+ </style>
+
+    <h1>Bienvenue sur le catalogue des villes !</h1>
+
+    <form method="GET">
+        <select name="ville">
+            <option value="">Toutes les villes</option>
+            {% for lieu in lieux %}
+                <option value="{{ lieu.ville }}">{{ lieu.ville }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filtrer</button>
+    </form>
+
+    {% for appartement in appartements %}
+        <div class="content">
+            <h2>{{ appartement.titre }}</h2>
+            <p>{{ appartement.description }}</p>
+            <p>{{ appartement.prix }} €</p>
+            <p>{{ appartement.lieu.ville }} ({{ appartement.lieu.codePostal }})</p>
+        </div>
+    {% endfor %}
+{% endblock %}
